@@ -1,8 +1,14 @@
 #pragma once
 
+#include "user.h"
 #include "chatroom.h"
 
-class ChatRoomProxy
-{
+namespace Chat {
+
+    class ChatRoomProxy
+    {
+        std::vector<User> users;
+
+    };
 
 }
