@@ -15,3 +15,13 @@ std::string Chat::User::getName() const noexcept
     return name_;
 }
 
+void Chat::User::setPassword(const std::string& password)
+{
+    password_ = password;
+}
+
+void Chat::User::setName(const std::string& name)
+{
+    name_ = name;
+}
+

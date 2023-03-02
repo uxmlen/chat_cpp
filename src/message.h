@@ -4,8 +4,8 @@
 
 namespace Chat {
 
-    class Message
-    {    
+    class Message final
+    {
         const std::string sender_;
         const std::string receiver_;
         const std::string content_;
@@ -15,6 +15,7 @@ namespace Chat {
 
         std::string getSender() const noexcept;
         std::string getContent() const noexcept;
+        std::string getReciever() const noexcept;
     };
 
 }

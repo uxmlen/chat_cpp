@@ -4,8 +4,9 @@
 
 ## TODO list
 
-- [ ] sign in/up by password & login
-- [ ] logout  
+- [ ] sign up by password & login, name
+- [ ] sign in by password & login
+- [ ] logout
 - [ ] sending messages to user/all users
-    extra features
-    - [ ]
+## extra features
+- [ ]

@@ -9,10 +9,13 @@ namespace Chat {
 
     class ChatRoom
     {
-        std::vector<Message> msg_;
+        std::string current_user;
+        std::vector<Message> msgs_;
     public:
+        ChatRoom(std::string& current_user);
         void displayAllMessages() const;
-        void sendMessage(const std::string message);
+        void sendMessages();
+        void showMessages();
 
     };
 

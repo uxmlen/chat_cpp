@@ -4,7 +4,7 @@
 
 namespace Chat {
 
-    class User 
+    class User final
     {
         std::string password_;
         std::string name_;
@@ -17,9 +17,8 @@ namespace Chat {
         std::string getPassword() const noexcept;
         std::string getName() const noexcept;
         // setters
-        std::string setUsername(const std::string& name);
-        std::string setPassword(const std::string& pass);
-        std::string setName(const std::string& name);
+        void setName(const std::string& name);
+        void setPassword(const std::string& pass);
     };
 
 }
