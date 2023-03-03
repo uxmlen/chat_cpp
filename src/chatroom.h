@@ -5,18 +5,28 @@
 
 #include "message.h"
 
-namespace Chat {
-
+namespace Chat 
+{
     class ChatRoom
     {
-        std::string current_user;
+        enum { 
+            LOGOUT, 
+            DISPLAY_MSG_ALL,
+            SEND_MESSAGE
+        };
+
+        std::string current_user_;
         std::vector<Message> msgs_;
     public:
-        ChatRoom(std::string& current_user);
+        ChatRoom(std::string& current_user)
+            : current_user_(current_user) {}
+        //TODO: make this
         void displayAllMessages() const;
-        void sendMessages();
-        void showMessages();
-
+        void sendMessage();
+        //void showMessages();
+        void showMenu();
+    private:
+        void selectAction(unsigned int action);
     };
 
 }

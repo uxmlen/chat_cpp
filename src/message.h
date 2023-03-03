@@ -6,9 +6,9 @@ namespace Chat {
 
     class Message final
     {
+        const std::string content_;
         const std::string sender_;
         const std::string receiver_;
-        const std::string content_;
     public:
         Message(const std::string& content, const std::string& sender, const std::string& receiver)
             : content_(content), sender_(sender), receiver_(receiver) {}

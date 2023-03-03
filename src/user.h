@@ -6,9 +6,9 @@ namespace Chat {
 
     class User final
     {
+        const std::string username_;
         std::string password_;
         std::string name_;
-        const std::string username_;
     public:
         User(const std::string& username, const std::string& password, const std::string& name)
             : username_(username), password_(password), name_(name) {}
