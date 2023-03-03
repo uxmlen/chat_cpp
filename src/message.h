@@ -15,7 +15,7 @@ namespace Chat {
 
         std::string getSender() const noexcept;
         std::string getContent() const noexcept;
-        std::string getReciever() const noexcept;
+        std::string getReceiver() const noexcept;
     };
 
 }

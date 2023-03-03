@@ -7,10 +7,10 @@ std::string Chat::Message::getContent() const noexcept
 
 std::string Chat::Message::getSender() const noexcept
 {
-    return content_;
+    return sender_;
 }
 
-std::string Chat::Message::getReciever() const noexcept
+std::string Chat::Message::getReceiver() const noexcept
 {
-    return content_;
+    return receiver_;
 }
