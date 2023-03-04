@@ -2,6 +2,11 @@
 
 #include <string>
 
+void Chat::ChatRoomProxy::signIn()
+{
+
+}
+
 void Chat::ChatRoomProxy::showMenu()
 {
     // TODO: тут проверка (регистрация и авторизация)
