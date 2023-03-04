@@ -2,7 +2,7 @@
 
 std::string Chat::User::getUsername() const noexcept
 {
-    return name_;
+    return username_;
 }
 
 std::string Chat::User::getPassword() const noexcept

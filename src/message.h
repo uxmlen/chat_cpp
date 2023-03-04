@@ -2,8 +2,8 @@
 
 #include <string>
 
-namespace Chat {
-
+namespace Chat 
+{
     class Message final
     {
         const std::string content_;
@@ -17,5 +17,4 @@ namespace Chat {
         std::string getContent() const noexcept;
         std::string getReceiver() const noexcept;
     };
-
-}
+} // namespace Chat

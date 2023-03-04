@@ -21,4 +21,4 @@ namespace Chat {
         void setPassword(const std::string& pass);
     };
 
-}
+} // namespace Chat

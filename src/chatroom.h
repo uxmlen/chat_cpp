@@ -9,7 +9,7 @@ namespace Chat
 {
     class ChatRoom
     {
-        enum { 
+        enum {
             LOGOUT, 
             DISPLAY_MSG_ALL,
             SEND_MESSAGE
@@ -29,4 +29,4 @@ namespace Chat
         void selectAction(unsigned int action);
     };
 
-}
+} // namespace Chat
