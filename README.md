@@ -8,8 +8,8 @@ cd build && cmake ..
 
 ## TODO list
 
-- [ ] sign up by password & login, name
-- [ ] sign in by password & login
+- [x] sign up by password & login, name
+- [x] sign in by password & login
 - [ ] logout
 - [ ] sending messages to user/all users
 

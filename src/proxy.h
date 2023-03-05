@@ -9,8 +9,8 @@ namespace Chat {
 
     class ChatRoomProxy
     {
-    
-        bool isAuthorized = false;
+        std::string active_user_;
+        bool isAuthorized_ = false;
         std::vector<User> users_;
     public: 
         void showMenu();

@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-
 void Chat::ChatRoomProxy::signUp()
 {
     std::string name, username, password;
@@ -11,6 +10,7 @@ void Chat::ChatRoomProxy::signUp()
     std::cout << "Enter the username: ";
     std::cin >> username;
     if (isUserExisted(username)) {
+        // TODO exceptions
         std::cerr << "this username is already taken " << std::endl;
         return;
     }
@@ -44,35 +44,35 @@ Chat::User Chat::ChatRoomProxy::lookUpUserByUsername(std::string& username)
     }
 }
 
-
 void Chat::ChatRoomProxy::signIn()
 {
     std::string username, password;
     std::cout << "Enter the username: ";
     std::cin >> username;
     if (!isUserExisted(username)) {
-        std::cerr << "This user does not exist";
+        std::cerr << "This user does not exist" << std::endl;
         return;
     }
     std::cout << "Enter the password: ";
     std::cin >> password;
     User user = lookUpUserByUsername(username);
     if (!isPassCorrect(password, user)) {
-        std::cerr << "this password is not correct";
+        std::cerr << "this password is not correct" << std::endl;
         return;
     }
-    isAuthorized = true;
+    active_user_ = user.getUsername();
+    isAuthorized_ = true;
 }
 
 
 void Chat::ChatRoomProxy::showAuthMenu()
 {
     int action = -1;
-    while(!isAuthorized) {
+    while(!isAuthorized_) {
         std::cout << "choose the action" << std::endl
-            << "0 - sign up" << std::endl
-            << "1 - sign in" << std::endl
-            << "2 - exit" << std::endl;
+                  << "0 - sign up" << std::endl
+                  << "1 - sign in" << std::endl
+                  << "2 - exit" << std::endl;
         std::cin >> action;
         switch(action) {
             case 0:
@@ -89,11 +89,9 @@ void Chat::ChatRoomProxy::showAuthMenu()
 
 void Chat::ChatRoomProxy::showMenu()
 {
-    // TODO: тут проверка (регистрация и авторизация)
-    // и передача пользователя
     showAuthMenu();
-    std::string user1 = "user";
-    ChatRoom chat(user1);
+
+    ChatRoom chat(active_user_);
     chat.showMenu();
 }
 

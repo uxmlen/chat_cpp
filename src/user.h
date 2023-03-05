@@ -2,8 +2,8 @@
 
 #include <string>
 
-namespace Chat {
-
+namespace Chat 
+{
     class User final
     {
         const std::string username_;
@@ -20,5 +20,4 @@ namespace Chat {
         void setName(const std::string& name);
         void setPassword(const std::string& pass);
     };
-
 } // namespace Chat
