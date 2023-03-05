@@ -1,0 +1,9 @@
+# ninja log v5
+36	698	6997315616357949	src/CMakeFiles/console_chat.dir/message.cpp.obj	431fce26a5d50d1c
+28	714	6997315616677723	src/CMakeFiles/console_chat.dir/user.cpp.obj	50fdc675976ea55a
+6	724	6997315616757673	src/CMakeFiles/console_chat.dir/main.cpp.obj	18404181d1fc1d6e
+21	1101	6997315620485363	src/CMakeFiles/console_chat.dir/chatroom.cpp.obj	c0e26d16f95bef8c
+14	1124	6997315620775197	src/CMakeFiles/console_chat.dir/proxy.cpp.obj	59746937e44c06a
+1125	1600	6997315625242407	src/console_chat.exe	d0e25677e24c96ef
+22	905	6997337608967133	src/CMakeFiles/console_chat.dir/main.cpp.obj	18404181d1fc1d6e
+42	1255	6997337612474957	src/CMakeFiles/console_chat.dir/chatroom.cpp.obj	c0e26d16f95bef8c

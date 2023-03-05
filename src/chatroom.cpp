@@ -15,6 +15,7 @@ void Chat::ChatRoom::showMenu()
     }
 }
 
+
 void Chat::ChatRoom::selectAction(unsigned int action)
 {
     switch(action) {

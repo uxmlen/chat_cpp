@@ -20,6 +20,9 @@ namespace Chat {
         // creating a new account in std::vector users_
         void signUp();
         void showAuthMenu();
+        bool isUserExisted(std::string& username);
+        bool isPassCorrect(std::string& password, User& user);
+        User lookUpUserByUsername(std::string& username);
 
     };
 
