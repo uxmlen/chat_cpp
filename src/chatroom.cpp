@@ -35,6 +35,10 @@ void chat::ChatRoom::selectAction(unsigned int action)
 void chat::ChatRoom::displayAllMessages() const
 {
     // TODO display all messages from std::vector<Message> msg
+    if (msgs_.empty()) {
+        std::cout << "  there are no messages yet." << std::endl;
+        return;
+    }
     std::cout << "messages =>";
     for (const auto& m : msgs_) {
         std::cout << "from: " << m.getSender()
