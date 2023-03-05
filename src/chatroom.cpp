@@ -35,6 +35,10 @@ void Chat::ChatRoom::displayAllMessages() const
 {
     // TODO display all messages from std::vector<Message> msg
     std::cout << "messages =>";
+    for (auto m : msgs_) {
+        std::cout << "from: " << m.getSender() << " to: " << m.getReceiver() << std::endl;
+        std::cout << m.getContent() << std::endl;
+    }
 }
 
 void Chat::ChatRoom::sendMessage()
