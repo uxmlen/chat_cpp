@@ -35,7 +35,7 @@ bool Chat::ChatRoomProxy::isPassCorrect(std::string& password, User& user)
     return user.getPassword() == password;
 }
 
-User Chat::ChatRoomProxy::lookUpUserByUsername(std::string& username)
+Chat::User Chat::ChatRoomProxy::lookUpUserByUsername(std::string& username)
 {
     for (auto user : users_) {
         if (user.getUsername() == username) {
@@ -70,8 +70,9 @@ void Chat::ChatRoomProxy::showAuthMenu()
     int action = -1;
     while(!isAuthorized) {
         std::cout << "choose the action" << std::endl
-                  << "0 - sign up" << std::endl
-                  << "1 - sign in" << std::endl;
+            << "0 - sign up" << std::endl
+            << "1 - sign in" << std::endl
+            << "2 - exit" << std::endl;
         std::cin >> action;
         switch(action) {
             case 0:
@@ -80,6 +81,8 @@ void Chat::ChatRoomProxy::showAuthMenu()
             case 1:
                 signIn();
                 break;
+            case 2:
+                exit(0);
         }
     }
 }
