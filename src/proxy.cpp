@@ -4,7 +4,15 @@
 
 void Chat::ChatRoomProxy::signUp()
 {
-    isAuthorized = true;
+    std::string name, username, password;
+    std::cout << "Enter the name: ";
+    std::cin >> name;
+    std::cout << "Enter the username: ";
+    std::cin >> username;
+    std::cout << "Enter the password: ";
+    std::cin >> password;
+    User client(name, username, password);
+    users_push_back(client);
 }
 
 void Chat::ChatRoomProxy::signIn()
