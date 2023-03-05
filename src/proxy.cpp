@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void Chat::ChatRoomProxy::signUp()
+void chat::ChatRoomProxy::signUp()
 {
     std::string name, username, password;
     std::cout << "Enter the name: ";
@@ -20,9 +20,10 @@ void Chat::ChatRoomProxy::signUp()
     users_.push_back(client);
 }
 
-bool Chat::ChatRoomProxy::isUserExisted(std::string& username)
+bool chat::ChatRoomProxy::isUserExisted(std::string& username)
 {
-    for (auto user : users_) {
+    // TODO check by func. lookUpUserByUsername();
+    for (const auto& user : users_) {
         if (user.getUsername() == username) {
             return true;
         }
@@ -30,21 +31,22 @@ bool Chat::ChatRoomProxy::isUserExisted(std::string& username)
     return false;
 }
 
-bool Chat::ChatRoomProxy::isPassCorrect(std::string& password, User& user)
+bool chat::ChatRoomProxy::isPassCorrect(std::string& password, User& user)
 {
     return user.getPassword() == password;
 }
 
-Chat::User Chat::ChatRoomProxy::lookUpUserByUsername(std::string& username)
+chat::User chat::ChatRoomProxy::lookUpUserByUsername(std::string& username)
 {
-    for (auto user : users_) {
+    for (const auto& user : users_) {
         if (user.getUsername() == username) {
             return user;
         }
     }
+    // TODO throw exception
 }
 
-void Chat::ChatRoomProxy::signIn()
+void chat::ChatRoomProxy::signIn()
 {
     std::string username, password;
     std::cout << "Enter the username: ";
@@ -65,7 +67,7 @@ void Chat::ChatRoomProxy::signIn()
 }
 
 
-void Chat::ChatRoomProxy::showAuthMenu()
+void chat::ChatRoomProxy::showAuthMenu()
 {
     int action = -1;
     while(!isAuthorized_) {
@@ -87,11 +89,10 @@ void Chat::ChatRoomProxy::showAuthMenu()
     }
 }
 
-void Chat::ChatRoomProxy::showMenu()
+void chat::ChatRoomProxy::showMenu()
 {
     showAuthMenu();
 
     ChatRoom chat(active_user_);
     chat.showMenu();
 }
-

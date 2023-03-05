@@ -2,7 +2,7 @@
 
 #include "chatroom.h"
 
-void Chat::ChatRoom::showMenu()
+void chat::ChatRoom::showMenu()
 {
     int action = -1;
     while(true) {
@@ -16,10 +16,10 @@ void Chat::ChatRoom::showMenu()
 }
 
 
-void Chat::ChatRoom::selectAction(unsigned int action)
+void chat::ChatRoom::selectAction(unsigned int action)
 {
     switch(action) {
-    case LOGOUT:
+    case CHANGE_ACCOUNT:
         // TODO logout in proxy chat
         break;
     case DISPLAY_MSG_ALL:
@@ -32,17 +32,18 @@ void Chat::ChatRoom::selectAction(unsigned int action)
 
 }
 
-void Chat::ChatRoom::displayAllMessages() const
+void chat::ChatRoom::displayAllMessages() const
 {
     // TODO display all messages from std::vector<Message> msg
     std::cout << "messages =>";
-    for (auto m : msgs_) {
-        std::cout << "from: " << m.getSender() << " to: " << m.getReceiver() << std::endl;
-        std::cout << m.getContent() << std::endl;
+    for (const auto& m : msgs_) {
+        std::cout << "from: " << m.getSender()
+                  << " to: " << m.getReceiver() << std::endl
+                  << m.getContent() << std::endl;
     }
 }
 
-void Chat::ChatRoom::sendMessage()
+void chat::ChatRoom::sendMessage()
 {
     std::string reciever;
     std::cout << "who will be the reciever?" << std::endl;

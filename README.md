@@ -14,4 +14,6 @@ cd build && cmake ..
 - [ ] sending messages to user/all users
 
 ### extra features
-- [ ] ...
+- [ ] profile viewer
+- [ ] profile editor
+- [ ] exceptions

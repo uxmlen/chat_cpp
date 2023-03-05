@@ -2,9 +2,9 @@
 
 int main(void)
 {
-    Chat::ChatRoomProxy chat;
+    chat::ChatRoomProxy chatroom;
 
-    chat.showMenu();
+    chatroom.showMenu();
 
     return 0;
 }

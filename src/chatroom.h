@@ -5,12 +5,12 @@
 
 #include "message.h"
 
-namespace Chat 
-{
+namespace chat {
+
     class ChatRoom
     {
         enum {
-            LOGOUT, 
+            CHANGE_ACCOUNT,
             DISPLAY_MSG_ALL,
             SEND_MESSAGE
         };
@@ -20,13 +20,11 @@ namespace Chat
     public:
         ChatRoom(std::string& current_user)
             : current_user_(current_user) {}
-        //TODO: make this
         void displayAllMessages() const;
         void sendMessage();
-        //void showMessages();
         void showMenu();
     private:
         void selectAction(unsigned int action);
     };
 
-} // namespace Chat
+} // namespace chat
