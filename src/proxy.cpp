@@ -12,7 +12,7 @@ void Chat::ChatRoomProxy::signUp()
     std::cout << "Enter the password: ";
     std::cin >> password;
     User client(name, username, password);
-    users_push_back(client);
+    users._push_back(client);
 }
 
 void Chat::ChatRoomProxy::signIn()

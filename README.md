@@ -1,5 +1,9 @@
 # console chat cpp
 module 1 - final project
+# build
+``` 
+cd build && cmake ..
+```
 ## members
 
 ## TODO list
