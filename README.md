@@ -3,6 +3,7 @@ module 1 - final project
 # build
 ``` 
 cd build && cmake ..
+cmake --build . --config Release
 ```
 ## members
 

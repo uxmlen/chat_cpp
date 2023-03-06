@@ -1,8 +1,8 @@
-#include "proxy.h"
+#include "chatroom.h"
 
 int main(void)
 {
-    chat::ChatRoomProxy chatroom;
+    chat::ChatRoom chatroom;
 
     chatroom.showMenu();
 
