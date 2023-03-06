@@ -43,6 +43,7 @@ void chat::ChatRoom::selectAction(unsigned int action)
 {
     switch(action) {
     case CHANGE_ACCOUNT:
+        isAuthorized_ = false;
         showAuthMenu();
         break;
     case DISPLAY_MSG_ALL:
