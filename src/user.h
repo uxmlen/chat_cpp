@@ -13,9 +13,10 @@ namespace chat {
         User(const std::string& username, const std::string& password, const std::string& name)
             : username_(username), password_(password), name_(name) {}
         // getters
+        const std::string& getName() const noexcept;
         const std::string& getUsername() const noexcept;
         const std::string& getPassword() const noexcept;
-        const std::string& getName() const noexcept;
+        const std::string& getDescription() const noexcept;
         // setters
         void setName(const std::string& name) noexcept;
         void setPassword(const std::string& pass) noexcept;

@@ -11,8 +11,7 @@ void chat::ChatRoom::showMenu()
                   << "0 - change the account" << std::endl
                   << "1 - display all messages" << std::endl
                   << "2 - send message to user or all users" << std::endl
-                  << "3 - view profile" << std::endl
-                  << "4 - my account" << std::endl;
+                  << "3 - view profile" << std::endl;
         std::cin >> action;
         selectAction(action);
     }
@@ -54,7 +53,7 @@ void chat::ChatRoom::selectAction(unsigned int action)
         sendMessage();
         break;
     case VIEW_ACCOUNT:
-        view_account();
+        viewAccount();
         break;
     }
 
@@ -123,7 +122,7 @@ void chat::ChatRoom::signIn()
     isAuthorized_ = true;
 }
 
-void chat::ChatRoom::view_account() const
+void chat::ChatRoom::viewAccount() const
 {
     std::string username;
     std::shared_ptr<User> profile;
@@ -135,7 +134,8 @@ void chat::ChatRoom::view_account() const
         return;
     }
     std::cout << "info about: " << profile->getUsername() << std::endl
-              << "name: " << profile->getName() << std::endl;
+              << "name: " << profile->getName() << std::endl
+              << "description: " << (profile->getDescription().empty() ? "not set" : profile->getDescription()) << std::endl;
 }
 
 bool chat::ChatRoom::isUserExisted(const std::string& username) const

@@ -36,7 +36,7 @@ namespace chat {
         // creating a new account in std::vector<User> users_
         void signUp();
         
-        void view_account() const;
+        void viewAccount() const;
 
         bool isUserExisted(const std::string& username) const;
         std::shared_ptr<User> lookUpUserByUsername(const std::string& username) const;
