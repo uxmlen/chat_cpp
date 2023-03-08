@@ -80,10 +80,25 @@ void chat::ChatRoom::sendMessage()
     std::string receiver, text;
     std::cout << "who will be the receiver?" << std::endl;
     std::cin >> receiver;
+    // receiver check is needed here
     std::cout << "enter text: ";
     std::cin >> text;
     Message m(text, chat::ChatRoom::current_user_->getUsername(), receiver);
     msgs_.push_back(m);
+    if (receiver.compare("all") == 0) {
+        for (const auto& r : users_) {
+            // don't send to yourself
+            if (m.getSender().compare(r.getUsername()) == 0) continue;
+            std::cout << "from: " << m.getSender()
+                << " to: " << r.getUsername() << std::endl
+                << text << std::endl;
+        }
+    }
+    else {
+        std::cout << "from: " << m.getSender()
+            << " to: " << m.getReceiver() << std::endl
+            << text << std::endl;
+    }
 }
 
 void chat::ChatRoom::signUp()
