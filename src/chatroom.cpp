@@ -11,7 +11,8 @@ void chat::ChatRoom::showMenu()
                   << "0 - change the account" << std::endl
                   << "1 - display all messages" << std::endl
                   << "2 - send message to user or all users" << std::endl
-                  << "3 - view profile" << std::endl;
+                  << "3 - view profile" << std::endl
+                  << "4 - my account" << std::endl;
         std::cin >> action;
         selectAction(action);
     }
@@ -113,44 +114,42 @@ void chat::ChatRoom::signIn()
     }
     std::cout << "Enter the password: ";
     std::cin >> password;
-    User user = lookUpUserByUsername(username);
-    if (!isPassCorrect(password, user)) {
-        std::cerr << "this password is not correct" << std::endl;
+    current_user_ = lookUpUserByUsername(username);
+    if (!current_user_ || (password != current_user_->getPassword())) {
+        std::cerr << "the password or username is not correct" << std::endl;
+        current_user_ = nullptr;
         return;
     }
-    current_user_ = user.getUsername();
     isAuthorized_ = true;
 }
 
 void chat::ChatRoom::view_account() const
 {
-    
+    std::string username;
+    std::shared_ptr<User> profile;
     std::cout << "which profile do you want to view?" << std::endl;
-    // ...
-    // TODO finish this
-}
-
-bool chat::ChatRoom::isUserExisted(std::string& username)
-{
-    // TODO check by func. lookUpUserByUsername();
-    for (const auto& user : users_) {
-        if (user.getUsername() == username) {
-            return true;
-        }
+    std::cin >> username;
+    profile = lookUpUserByUsername(username);
+    if (!profile) {
+        std::cerr << "profile not found" << std::endl;
+        return;
     }
-    return false;
+    std::cout << "info about: " << profile->getUsername() << std::endl
+              << "name: " << profile->getName() << std::endl;
 }
 
-bool chat::ChatRoom::isPassCorrect(std::string& password, User& user)
+bool chat::ChatRoom::isUserExisted(const std::string& username) const
 {
-    return user.getPassword() == password;
+    return lookUpUserByUsername(username) ? true : false;
 }
 
-chat::User chat::ChatRoom::lookUpUserByUsername(std::string& username)
+
+std::shared_ptr<chat::User> chat::ChatRoom::lookUpUserByUsername(const std::string& username) const
 {
     for (const auto& user : users_) {
         if (user.getUsername() == username) {
-            return user;
+            return std::make_shared<User>(user);
         }
     }
+    return nullptr;
 }

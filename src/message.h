@@ -11,10 +11,10 @@ namespace chat {
     public:
         Message(const std::string& content, const std::string& sender, const std::string& receiver)
             : content_(content), sender_(sender), receiver_(receiver) {}
-
-        std::string getSender() const noexcept;
-        std::string getContent() const noexcept;
-        std::string getReceiver() const noexcept;
+        // getters
+        const std::string& getSender() const noexcept;
+        const std::string& getContent() const noexcept;
+        const std::string& getReceiver() const noexcept;
     };
 
 } // namespace chat

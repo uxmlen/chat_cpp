@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include <string>
 
 #include "message.h"
@@ -17,7 +18,7 @@ namespace chat {
             VIEW_ACCOUNT
         };
 
-        std::string current_user_;
+        std::shared_ptr<User> current_user_;
         bool isAuthorized_ = false;
         std::vector<Message> msgs_;
         std::vector<User> users_;
@@ -37,9 +38,8 @@ namespace chat {
         
         void view_account() const;
 
-        bool isUserExisted(std::string& username);
-        bool isPassCorrect(std::string& password, User& user);
-        User lookUpUserByUsername(std::string& username);
+        bool isUserExisted(const std::string& username) const;
+        std::shared_ptr<User> lookUpUserByUsername(const std::string& username) const;
     };
 
 } // namespace chat
