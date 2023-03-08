@@ -78,6 +78,7 @@ void chat::ChatRoom::displayAllMessages() const
 void chat::ChatRoom::sendMessage()
 {
     std::string receiver, text;
+    std::cout << "use \"all\" to send a message to all users" << std::endl;
     std::cout << "who will be the receiver?" << std::endl;
     std::cin >> receiver;
     // receiver check is needed here
