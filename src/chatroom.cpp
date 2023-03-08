@@ -67,7 +67,7 @@ void chat::ChatRoom::displayAllMessages() const
         return;
     }
 
-    std::cout << "messages =>";
+    std::cout << "messages =>" << std::endl;
     for (const auto& m : msgs_) {
         std::cout << "from: " << m.getSender()
                   << " to: " << m.getReceiver() << std::endl
@@ -77,10 +77,13 @@ void chat::ChatRoom::displayAllMessages() const
 
 void chat::ChatRoom::sendMessage()
 {
-    std::string reciever;
+    std::string receiver, text;
     std::cout << "who will be the receiver?" << std::endl;
-    std::cin >> reciever;
-    // ... 
+    std::cin >> receiver;
+    std::cout << "enter text: ";
+    std::cin >> text;
+    Message m(text, chat::ChatRoom::current_user_->getUsername(), receiver);
+    msgs_.push_back(m);
 }
 
 void chat::ChatRoom::signUp()
