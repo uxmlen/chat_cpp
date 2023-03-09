@@ -11,10 +11,10 @@ cmake --build . --config Release
 
 - [x] sign up by password & login, name
 - [x] sign in by password & login
-- [ ] logout
-- [ ] sending messages to user/all users
+- [x] logout
+- [x] sending messages to user/all users
 
 ### extra features
-- [ ] profile viewer
+- [x] profile viewer
 - [ ] profile editor
 - [ ] exceptions
