@@ -17,4 +17,4 @@ cmake --build . --config Release
 ### extra features
 - [x] profile viewer
 - [ ] profile editor
-- [ ] exceptions
+- [x] exceptions

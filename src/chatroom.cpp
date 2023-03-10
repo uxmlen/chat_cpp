@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "chatroom.h"
+#include "exceptions.h"
 
 void chat::ChatRoom::showMenu()
 {
@@ -26,15 +27,19 @@ void chat::ChatRoom::showAuthMenu()
                   << "1 - sign in" << std::endl
                   << "2 - exit" << std::endl;
         std::cin >> action;
-        switch(action) {
-            case 0:
-                signUp();
-                break;
-            case 1:
-                signIn();
-                break;
-            case 2:
-                exit(0);
+        try {
+            switch(action) {
+                case 0:
+                    signUp();
+                    break;
+                case 1:
+                    signIn();
+                    break;
+                case 2:
+                    exit(0);
+            }
+        } catch(std::exception &e) {
+            std::cerr << e.what() << std::endl;
         }
     }
 }
@@ -61,7 +66,6 @@ void chat::ChatRoom::selectAction(unsigned int action)
 
 void chat::ChatRoom::displayAllMessages() const
 {
-    // TODO display all messages from std::vector<Message> msg
     if (msgs_.empty()) {
         std::cerr << "  there are no messages yet." << std::endl;
         return;
@@ -109,11 +113,8 @@ void chat::ChatRoom::signUp()
     std::cin >> name;
     std::cout << "Enter the username: ";
     std::cin >> username;
-    if (isUserExisted(username)) {
-        // TODO exceptions
-        std::cerr << "this username is already taken " << std::endl;
-        return;
-    }
+    if (isUserExisted(username))
+        throw busy_login_error();
     std::cout << "Enter the password: ";
     std::cin >> password;
     User client(name, username, password);
@@ -126,10 +127,8 @@ void chat::ChatRoom::signIn()
     std::string username, password;
     std::cout << "Enter the username: ";
     std::cin >> username;
-    if (!isUserExisted(username)) {
-        std::cerr << "This user does not exist" << std::endl;
-        return;
-    }
+    if (!isUserExisted(username))
+        throw user_not_existed_error();
     std::cout << "Enter the password: ";
     std::cin >> password;
     current_user_ = lookUpUserByUsername(username);
@@ -161,7 +160,6 @@ bool chat::ChatRoom::isUserExisted(const std::string& username) const
 {
     return lookUpUserByUsername(username) ? true : false;
 }
-
 
 std::shared_ptr<chat::User> chat::ChatRoom::lookUpUserByUsername(const std::string& username) const
 {
