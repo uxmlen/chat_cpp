@@ -18,3 +18,5 @@ cmake --build . --config Release
 - [x] profile viewer
 - [ ] profile editor
 - [x] exceptions
+- [ ] coloured output
+- [ ] numbers of sing in and sing up attempts
