@@ -18,5 +18,5 @@ cmake --build . --config Release
 - [x] profile viewer
 - [ ] profile editor
 - [x] exceptions
-- [ ] coloured output
+- [x] coloured output
 - [ ] limited numbers of sign in and sign up attempts

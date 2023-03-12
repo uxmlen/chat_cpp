@@ -7,7 +7,7 @@ void chat::ChatRoom::showMenu()
 {
     showAuthMenu();
     int action = -1;
-    while(true) {
+    while (true) {
         std::cout << "Choose the action" << std::endl
                   << "0 - change the account" << std::endl
                   << "1 - display all messages" << std::endl
@@ -21,32 +21,32 @@ void chat::ChatRoom::showMenu()
 void chat::ChatRoom::showAuthMenu()
 {
     int action = -1;
-    while(!isAuthorized_) {
+    while (!isAuthorized_) {
         std::cout << "Choose the action" << std::endl
                   << "0 - sign up" << std::endl
                   << "1 - sign in" << std::endl
                   << "2 - exit" << std::endl;
         std::cin >> action;
         try {
-            switch(action) {
-                case 0:
-                    signUp();
-                    break;
-                case 1:
-                    signIn();
-                    break;
-                case 2:
-                    exit(0);
+            switch (action) {
+            case 0:
+                signUp();
+                break;
+            case 1:
+                signIn();
+                break;
+            case 2:
+                exit(0);
             }
-        } catch(std::exception &e) {
+        } catch (std::exception& e) {
             std::cerr << e.what() << std::endl;
         }
     }
 }
 
-void chat::ChatRoom::selectAction(unsigned int action)
+void chat::ChatRoom::selectAction(unsigned int action) try
 {
-    switch(action) {
+    switch (action) {
     case CHANGE_ACCOUNT:
         isAuthorized_ = false;
         showAuthMenu();
@@ -61,7 +61,8 @@ void chat::ChatRoom::selectAction(unsigned int action)
         viewAccount();
         break;
     }
-
+} catch (std::exception& e) {
+    std::cerr << e.what() << std::endl;
 }
 
 void chat::ChatRoom::displayAllMessages() const
@@ -93,16 +94,16 @@ void chat::ChatRoom::sendMessage()
     if (receiver.compare("all") == 0) {
         for (const auto& r : users_) {
             // don't send to yourself
-            if (m.getSender().compare(r.getUsername()) == 0) continue;
+            if (m.getSender().compare(r.getUsername()) == 0)
+                continue;
             std::cout << "from: " << m.getSender()
-                << " to: " << r.getUsername() << std::endl
-                << text << std::endl;
+                      << " to: " << r.getUsername() << std::endl
+                      << text << std::endl;
         }
-    }
-    else {
+    } else {
         std::cout << "from: " << m.getSender()
-            << " to: " << m.getReceiver() << std::endl
-            << text << std::endl;
+                  << " to: " << m.getReceiver() << std::endl
+                  << text << std::endl;
     }
 }
 
@@ -119,7 +120,9 @@ void chat::ChatRoom::signUp()
     std::cin >> password;
     User client(name, username, password);
     users_.push_back(client);
-    std::cout << "Account was created" << std::endl; 
+    // u001b[32m  green
+    // u001b[0    reset color
+    std::cout << "\u001b[32mAccount was created\u001b[0" << std::endl;
 }
 
 void chat::ChatRoom::signIn()
@@ -133,6 +136,7 @@ void chat::ChatRoom::signIn()
     std::cin >> password;
     current_user_ = lookUpUserByUsername(username);
     if (!current_user_ || (password != current_user_->getPassword())) {
+        // TODO: exception
         std::cerr << "the password or username is not correct" << std::endl;
         current_user_ = nullptr;
         return;
@@ -147,10 +151,9 @@ void chat::ChatRoom::viewAccount() const
     std::cout << "which profile do you want to view?" << std::endl;
     std::cin >> username;
     profile = lookUpUserByUsername(username);
-    if (!profile) {
-        std::cerr << "profile not found" << std::endl;
-        return;
-    }
+    if (!profile)
+        throw user_not_existed_error();
+
     std::cout << "info about: " << profile->getUsername() << std::endl
               << "name: " << profile->getName() << std::endl
               << "description: " << (profile->getDescription().empty() ? "not set" : profile->getDescription()) << std::endl;

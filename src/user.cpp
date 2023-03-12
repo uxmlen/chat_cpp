@@ -36,4 +36,3 @@ void chat::User::setDescription(const std::string& description) noexcept
 {
     description_ = description;
 }
-
