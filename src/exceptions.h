@@ -1,5 +1,7 @@
 #include <stdexcept>
 
+namespace chat {
+
 // 001b[31m  red color
 // 001b[0m   reset color
 struct busy_login_error : public std::runtime_error {
@@ -15,3 +17,5 @@ struct user_not_existed_error : public std::runtime_error {
     {
     }
 };
+
+} // namespace chat

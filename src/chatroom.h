@@ -10,13 +10,6 @@
 namespace chat {
 
 class ChatRoom {
-    enum {
-        CHANGE_ACCOUNT,
-        DISPLAY_MSG_ALL,
-        SEND_MESSAGE,
-        VIEW_ACCOUNT
-    };
-
     std::shared_ptr<User> current_user_;
     bool isAuthorized_ = false;
     std::vector<Message> msgs_;

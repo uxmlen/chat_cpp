@@ -3,7 +3,16 @@
 #include "chatroom.h"
 #include "exceptions.h"
 
-void chat::ChatRoom::showMenu()
+namespace chat {
+
+enum ActionsMenu {
+    ChangeAccount,
+    DisplayMsgAll,
+    SendMessage,
+    ViewAccount
+};
+
+void ChatRoom::showMenu()
 {
     showAuthMenu();
     int action = -1;
@@ -18,7 +27,7 @@ void chat::ChatRoom::showMenu()
     }
 }
 
-void chat::ChatRoom::showAuthMenu()
+void ChatRoom::showAuthMenu()
 {
     int action = -1;
     while (!isAuthorized_) {
@@ -44,20 +53,20 @@ void chat::ChatRoom::showAuthMenu()
     }
 }
 
-void chat::ChatRoom::selectAction(unsigned int action) try
-{
+void ChatRoom::selectAction(unsigned int action)
+try {
     switch (action) {
-    case CHANGE_ACCOUNT:
+    case ChangeAccount:
         isAuthorized_ = false;
         showAuthMenu();
         break;
-    case DISPLAY_MSG_ALL:
+    case DisplayMsgAll:
         displayAllMessages();
         break;
-    case SEND_MESSAGE:
+    case SendMessage:
         sendMessage();
         break;
-    case VIEW_ACCOUNT:
+    case ViewAccount:
         viewAccount();
         break;
     }
@@ -65,7 +74,7 @@ void chat::ChatRoom::selectAction(unsigned int action) try
     std::cerr << e.what() << std::endl;
 }
 
-void chat::ChatRoom::displayAllMessages() const
+void ChatRoom::displayAllMessages() const
 {
     if (msgs_.empty()) {
         std::cerr << "  there are no messages yet." << std::endl;
@@ -80,7 +89,7 @@ void chat::ChatRoom::displayAllMessages() const
     }
 }
 
-void chat::ChatRoom::sendMessage()
+void ChatRoom::sendMessage()
 {
     std::string receiver, text;
     std::cout << "use \"all\" to send a message to all users" << std::endl;
@@ -107,7 +116,7 @@ void chat::ChatRoom::sendMessage()
     }
 }
 
-void chat::ChatRoom::signUp()
+void ChatRoom::signUp()
 {
     std::string name, username, password;
     std::cout << "Enter the name: ";
@@ -118,14 +127,14 @@ void chat::ChatRoom::signUp()
         throw busy_login_error();
     std::cout << "Enter the password: ";
     std::cin >> password;
-    User client(name, username, password);
+    User client(username, password, username);
     users_.push_back(client);
     // u001b[32m  green
     // u001b[0    reset color
-    std::cout << "\u001b[32mAccount was created\u001b[0" << std::endl;
+    std::cout << "\u001b[32mAccount was created\u001b[0m" << std::endl;
 }
 
-void chat::ChatRoom::signIn()
+void ChatRoom::signIn()
 {
     std::string username, password;
     std::cout << "Enter the username: ";
@@ -144,7 +153,7 @@ void chat::ChatRoom::signIn()
     isAuthorized_ = true;
 }
 
-void chat::ChatRoom::viewAccount() const
+void ChatRoom::viewAccount() const
 {
     std::string username;
     std::shared_ptr<User> profile;
@@ -159,12 +168,12 @@ void chat::ChatRoom::viewAccount() const
               << "description: " << (profile->getDescription().empty() ? "not set" : profile->getDescription()) << std::endl;
 }
 
-bool chat::ChatRoom::isUserExisted(const std::string& username) const
+bool ChatRoom::isUserExisted(const std::string& username) const
 {
     return lookUpUserByUsername(username) ? true : false;
 }
 
-std::shared_ptr<chat::User> chat::ChatRoom::lookUpUserByUsername(const std::string& username) const
+std::shared_ptr<chat::User> ChatRoom::lookUpUserByUsername(const std::string& username) const
 {
     for (const auto& user : users_) {
         if (user.getUsername() == username) {
@@ -173,3 +182,5 @@ std::shared_ptr<chat::User> chat::ChatRoom::lookUpUserByUsername(const std::stri
     }
     return nullptr;
 }
+
+} // namespace chat
